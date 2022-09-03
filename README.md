@@ -4,4 +4,6 @@
 2. REST API 개발하기
    - Naver Open API 연동하기
    - Service 구현
+     - MapStruct 사용
    - Controller 구현
+     - Swagger 사용

@@ -24,4 +24,12 @@ public class WishListEntity extends MemoryDbEntity {
     public void modifyTitle(String title) {
         this.title = title;
     }
+
+    public void visited() {
+        this.visit = true;
+    }
+
+    public void visitCountUp() {
+        this.visitCount++;
+    }
 }

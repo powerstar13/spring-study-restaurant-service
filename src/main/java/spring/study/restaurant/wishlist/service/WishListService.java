@@ -74,4 +74,20 @@ public class WishListService {
             .stream().map(wishListDtoMapper::of)
             .collect(Collectors.toList());
     }
+
+    public void delete(int index) {
+        wishListRepository.deleteById(index);
+    }
+
+    public void addVisit(int index) {
+
+        var wishItem = wishListRepository.findById(index);
+
+        if (wishItem.isPresent()) {
+
+            var item = wishItem.get();
+            item.visited();
+            item.visitCountUp();
+        }
+    }
 }
