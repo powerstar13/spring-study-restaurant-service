@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import spring.study.restaurant.naver.dto.SearchImageReq;
 import spring.study.restaurant.naver.dto.SearchLocalReq;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @SpringBootTest
 class NaverClientTest {
 
