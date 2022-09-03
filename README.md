@@ -7,3 +7,5 @@
      - MapStruct 사용
    - Controller 구현
      - Swagger 사용
+3. 간단한 Front View 개발하기
+   - thymeleaf 사용
