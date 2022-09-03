@@ -6,12 +6,19 @@ import spring.study.restaurant.naver.NaverClient;
 import spring.study.restaurant.naver.dto.SearchImageReq;
 import spring.study.restaurant.naver.dto.SearchLocalReq;
 import spring.study.restaurant.wishlist.dto.WishListDto;
+import spring.study.restaurant.wishlist.dto.WishListDtoMapper;
+import spring.study.restaurant.wishlist.repository.WishListRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class WishListService {
 
     private final NaverClient naverClient;
+    private final WishListDtoMapper wishListDtoMapper;
+    private final WishListRepository wishListRepository;
 
     public WishListDto search(String query) {
 
@@ -42,7 +49,7 @@ public class WishListService {
                     .title(localItem.getTitle())
                     .category(localItem.getCategory())
                     .address(localItem.getAddress())
-                    .readAddress(localItem.getRoadAddress())
+                    .roadAddress(localItem.getRoadAddress())
                     .homePageLink(localItem.getLink())
                     .imageLink(imageItem.getLink())
                     .build();
@@ -51,5 +58,20 @@ public class WishListService {
 
         // 검색 결과가 없는 반환
         return new WishListDto();
+    }
+
+    public WishListDto add(WishListDto request) {
+
+        var entity = wishListDtoMapper.of(request);
+        var savedEntity = wishListRepository.save(entity);
+
+        return wishListDtoMapper.of(savedEntity);
+    }
+
+    public List<WishListDto> findAll() {
+
+        return wishListRepository.findAll()
+            .stream().map(wishListDtoMapper::of)
+            .collect(Collectors.toList());
     }
 }

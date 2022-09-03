@@ -19,7 +19,7 @@ class WishListRepositoryTest {
             .title("title")
             .category("category")
             .address("address")
-            .readAddress("readAddress")
+            .roadAddress("roadAddress")
             .homePageLink("")
             .imageLink("")
             .visit(false)
